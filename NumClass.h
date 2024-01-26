@@ -22,6 +22,8 @@ int countDigits(int ) ;
 int factorial(int);
 int powerloop(int,int) ;
 int isArmstrongRecursive(int , int , int );
+int isPalindromeRecursive(int , int );
+
 
 
 #endif
