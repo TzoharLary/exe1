@@ -44,23 +44,16 @@ int isArmstrong(int num) {
 
 
 
-// Function to check if an integer is a palindrome recursively
-int isPalindrome(int num) {
+// Recursive function to check if an integer is a palindrome
+int isPalindromeRecursive(int num, int divisor) {
     if (num < 0) {
         // Negative numbers are not palindromic
         return 0;
     }
 
-    int digits = countDigits(num);
-
-    if (digits <= 1) {
-        // Single-digit numbers are palindromic
+    if (divisor == 0) {
+        // Base case: when the divisor becomes 0 (single-digit or empty number)
         return 1;
-    }
-
-    int divisor = 1;
-    for (int i = 1; i < digits; ++i) {
-        divisor *= 10;
     }
 
     int firstDigit = num / divisor;
@@ -73,5 +66,15 @@ int isPalindrome(int num) {
 
     // Recursively check the palindrome status of the remaining sub-number
     int remainingNum = (num % divisor) / 10;
-    return isPalindrome(remainingNum);
+    return isPalindromeRecursive(remainingNum, divisor / 100);
+}
+
+// Wrapper function to call the recursive function with correct divisor
+int isPalindrome(int num) {
+    int digits = countDigits(num);
+    int divisor = 1;
+    for (int i = 1; i < digits; ++i) {
+        divisor *= 10;
+    }
+    return isPalindromeRecursive(num, divisor);
 }
